@@ -122,7 +122,7 @@ paths:
               schema:
                 $ref: ../common/models/error.v1.yaml
     post:
-      summary: Register new disease
+      summary: Register disease
       operationId: createDisease
       tags:
         - networkFundamentals
@@ -224,7 +224,7 @@ paths:
               schema:
                 $ref: ../common/models/error.v1.yaml
     post:
-      summary: Prescribe a medical tests
+      summary: Prescribe a medical test
       operationId: prescribeMedicalTests
       tags:
         - networkFundamentals
@@ -237,6 +237,132 @@ paths:
             application/json:
               schema:
                 $ref: ../common/models/error.v1.yaml
+  /medicalTest/{medicalTestId}/{attachment}:
+    post:
+      summary: Add attachment to the medical test
+      operationId: addAttachmentToMedicalTest
+      tags:
+        - networkFundamentals
+      parameters:
+        - name: medicalTestId
+          in: path
+          required: true
+          description: The id of the medical test to insert
+          schema:
+            type: string
+        - name: attachment
+          in: path
+          required: true
+          description: The JSON of the attachment to insert
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Null response
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: ../common/models/error.v1.yaml
+  /medicalTest/{previousYear}:
+    post:
+      summary: Get all medical tests for the previous year
+      operationId: getAllMedicalTestsForThePreviousYear
+      tags:
+        - networkFundamentals
+      parameters:
+        - name: previousYear
+          in: path
+          required: true
+          description: Previous year
+          schema:
+            type: string
+            format: date
+      responses:
+        '201':
+          description: Null response
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: ../common/models/error.v1.yaml
+  /medication:
+    get:
+      summary: Get all medications
+      description: Get all medications
+      operationId: listMedications
+      tags:
+        - networkFundamentals
+      parameters:
+        - name: limit
+          in: query
+          description: How many items to return at one time (max 100)
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - schema:
+            type: string
+          in: query
+          name: offset
+      responses:
+        '200':
+          description: A paged array of medications
+          headers:
+            x-next:
+              description: A link to the next page of responses
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Medications'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: ../common/models/error.v1.yaml
+    post:
+      summary: Prescribe a medications
+      operationId: prescribeMedications
+      tags:
+        - networkFundamentals
+      responses:
+        '201':
+          description: Null response
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: ../common/models/error.v1.yaml
+
+   /medications/{currentDate}:
+    post:
+      summary: Get all ongoing medications
+      operationId: getAllOngoingMedications
+      tags:
+        - networkFundamentals
+      parameters:
+        - name: currentDate
+          in: path
+          required: true
+          description: The JSON of the attachment to insert
+          schema:
+            type: string
+            format: date
+      responses:
+        '201':
+          description: Null response
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: ../common/models/error.v1.yaml             
   /drugDosage:
     get:
       summary: Get all drug dosages
@@ -288,9 +414,9 @@ paths:
             application/json:
               schema:
                 $ref: ../common/models/error.v1.yaml
-  /drugDosage/{drugId}:
-    get:
-      summary: Update drug dosage for a specific drug
+  /drugDosage/{drugId}/{quantity}:
+    post:
+      summary: Change drug dosage
       operationId: updateDrugDosageById
       tags:
         - networkFundamentals
@@ -301,19 +427,21 @@ paths:
           description: The id of the drug to update
           schema:
             type: string
+        - name: quantity
+          in: path
+          required: true
+          description: The quantity of the drug to update
+          schema:
+            type: number
       responses:
-        '200':
-          description: Expected response to a valid request
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/DrugDosage"
+        '201':
+          description: Null response
         default:
           description: unexpected error
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Error"
+                $ref: ../common/models/error.v1.yaml
 
 components:
   schemas:
@@ -392,12 +520,38 @@ components:
         name:
           type: string
           example: name
+        attachment:
+          type: string
         tag:
           type: string
     MedicalTests:
       type: array
       items:
         $ref: "#/components/schemas/MedicalTests"
+    Medication:
+      type: object
+      required:
+        - id
+        - isDone
+        - date
+      properties:
+        id:
+          type: integer
+        notes:
+          type: string
+        isDone:
+          type: boolean
+        date:
+          type: string
+          format: date
+          default: '2020-01-01'
+          example: '2020-01-01'
+        tag:
+          type: string
+    Medications:
+      type: array
+      items:
+        $ref: "#/components/schemas/Medications"
     DrugDosage:
       type: object
       required:
