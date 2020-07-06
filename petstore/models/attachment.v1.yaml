@@ -1,0 +1,29 @@
+title: Attachment
+description: An attachment.
+type: object
+x-tags:
+  - Attachment
+xml:
+  name: Attachment
+properties:
+  name:
+    type: string
+    example: doggie
+  content:
+    type: string
+    example: doggie
+  description:
+    type: string
+    example: doggie
+  filePath:
+    type: array
+    xml:
+      name: filePath
+      wrapped: true
+    items:
+      type: string
+  attachmentType:
+    $ref: ./attachmentType.v1.yaml
+required:
+  - name
+  - filePath
