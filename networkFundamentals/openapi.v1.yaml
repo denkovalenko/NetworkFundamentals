@@ -37,7 +37,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/people'
+                $ref: '#/components/schemas/People'
         default:
           description: unexpected error
           content:
@@ -89,7 +89,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/diseases'
+                $ref: '#/components/schemas/Diseases'
         default:
           description: unexpected error
           content:
@@ -130,7 +130,7 @@ components:
     People:
       type: array
       items:
-        $ref: "#/components/schemas/people"
+        $ref: "#/components/schemas/People"
     Error:
       type: object
       required:
@@ -155,4 +155,4 @@ components:
     Diseases:
       type: array
       items:
-        $ref: "#/components/schemas/diseases"
+        $ref: "#/components/schemas/Diseases"
