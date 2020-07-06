@@ -2,7 +2,7 @@ title: Attachment
 description: An attachment.
 type: object
 x-tags:
-  - Attachment
+  - attachment
 xml:
   name: Attachment
 properties:

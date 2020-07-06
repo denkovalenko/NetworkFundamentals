@@ -1,4 +1,4 @@
-title: Category
+title: AttachmentType
 type: object
 description: ''
 properties:
@@ -7,4 +7,4 @@ properties:
 required:
   - name
 x-tags:
-  - Pets
+  - attachment
