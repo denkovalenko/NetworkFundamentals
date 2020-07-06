@@ -1,6 +1,6 @@
-title: AttachmentType
+title: attachmentType
 type: object
-description: ''
+description: An attachment type.
 x-tags:
   - networkFundamentals
 properties:

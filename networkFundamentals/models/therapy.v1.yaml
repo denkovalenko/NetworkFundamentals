@@ -1,0 +1,20 @@
+title: therapy
+type: object
+description: A therapy.
+x-tags:
+  - networkFundamentals
+properties:
+  endDate:
+    type: string
+    example: '2021-01-01'
+    format: date
+    default: '2021-01-01'
+  startDate:
+    type: string
+    example: '2020-01-01'
+    format: date
+    default: '2020-01-01'
+  tests:
+    $ref: ./medicalTest.v1.yaml
+  diagnosis:
+    $ref: ./diagnosis.v1.yaml

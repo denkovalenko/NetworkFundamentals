@@ -1,0 +1,14 @@
+title: diagnosis
+type: object
+description: A diagnosis.
+x-tags:
+  - networkFundamentals
+properties:
+  name:
+    type: string
+    example: diagnosis
+  description:
+    type: string
+    example: description
+required:
+  - name

@@ -1,6 +1,6 @@
 title: medicalTestType
 type: object
-description: ''
+description: A medical test type.
 x-tags:
   - networkFundamentals
 properties:
@@ -9,4 +9,3 @@ properties:
     example: type
 required:
   - type
-

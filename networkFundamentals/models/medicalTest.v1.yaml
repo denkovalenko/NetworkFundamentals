@@ -19,3 +19,6 @@ properties:
     $ref: ./medicalTestType.v1.yaml
   attachments:
     $ref: ./attachment.v1.yaml
+required:
+  - name
+  - date
