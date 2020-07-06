@@ -10,5 +10,8 @@ properties:
   description:
     type: string
     example: description
+  code:
+    type: string
 required:
   - name
+  - code

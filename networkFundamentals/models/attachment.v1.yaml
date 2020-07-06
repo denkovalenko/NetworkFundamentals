@@ -24,6 +24,9 @@ properties:
       type: string
   type:
     $ref: ./attachmentType.v1.yaml
+  id:
+    type: integer
 required:
   - name
   - filePath
+  - id

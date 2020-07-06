@@ -1,27 +1,22 @@
+title: symptom
 type: object
-title: Medical Test
-description: A medical test.
+description: A symptom.
 x-tags:
   - networkFundamentals
 properties:
+  id:
+    type: integer
   date:
     type: string
-    example: '2020-01-01'
     format: date
     default: '2020-01-01'
+    example: '2020-01-01'
   description:
     type: string
     example: description
   name:
     type: string
     example: name
-  type:
-    $ref: ./medicalTestType.v1.yaml
-  attachments:
-    $ref: ./attachment.v1.yaml
-  id:
-    type: integer
 required:
-  - date
-  - name
   - id
+  - name

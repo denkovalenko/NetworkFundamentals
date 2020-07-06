@@ -1,0 +1,18 @@
+title: person
+type: object
+description: A person.
+x-tags:
+  - networkFundamentals
+properties:
+  id:
+    type: integer
+  dateOfBirthday:
+    type: string
+    format: date
+    default: '1999-01-01'
+    example: '1999-01-01'
+  name:
+    $ref: ./fullName.v1.yaml
+required:
+  - id
+  - dateOfBirthday

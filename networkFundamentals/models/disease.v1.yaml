@@ -1,0 +1,12 @@
+title: disease
+type: object
+description: A disease.
+x-tags:
+  - networkFundamentals
+properties:
+  id:
+    type: integer
+  symptoms:
+    $ref: ./symptom.v1.yaml
+  therapy:
+    $ref: ./therapy.v1.yaml

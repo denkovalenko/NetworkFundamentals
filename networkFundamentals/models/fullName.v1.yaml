@@ -1,0 +1,18 @@
+title: fullName
+type: object
+properties:
+  id:
+    type: integer
+  middleName:
+    type: string
+    example: Olehovich
+  name:
+    type: string
+    example: Denys
+  surname:
+    type: string
+    example: Kovalenko
+required:
+  - id
+  - name
+description: A full name of person.

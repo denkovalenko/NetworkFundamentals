@@ -4,8 +4,11 @@ description: A medical test type.
 x-tags:
   - networkFundamentals
 properties:
-  type:
+  name:
     type: string
     example: type
+  code:
+    type: string
 required:
-  - type
+  - name
+  - code
