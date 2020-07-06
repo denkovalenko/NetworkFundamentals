@@ -58,7 +58,32 @@ paths:
             application/json:
               schema:
                 $ref: ../common/models/error.v1.yaml
-
+  /people/{personId}:
+    get:
+      summary: Info for a specific person
+      operationId: showPersonById
+      tags:
+        - networkFundamentals
+      parameters:
+        - name: personId
+          in: path
+          required: true
+          description: The id of the person to retrieve
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Person"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
   /disease:
     get:
       summary: Get all disease
@@ -110,6 +135,185 @@ paths:
             application/json:
               schema:
                 $ref: ../common/models/error.v1.yaml
+  /treatment:
+    get:
+      summary: Get all treatments
+      description: Get all treatments
+      operationId: listTreatments
+      tags:
+        - networkFundamentals
+      parameters:
+        - name: limit
+          in: query
+          description: How many items to return at one time (max 100)
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - schema:
+            type: string
+          in: query
+          name: offset
+      responses:
+        '200':
+          description: A paged array of treatments
+          headers:
+            x-next:
+              description: A link to the next page of responses
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Treatments'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: ../common/models/error.v1.yaml
+    post:
+      summary: Prescribe a treatment
+      operationId: prescribeTreatment
+      tags:
+        - networkFundamentals
+      responses:
+        '201':
+          description: Null response
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: ../common/models/error.v1.yaml
+  /medicalTest:
+    get:
+      summary: Get all medical tests
+      description: Get all medical tests
+      operationId: listMedicalTests
+      tags:
+        - networkFundamentals
+      parameters:
+        - name: limit
+          in: query
+          description: How many items to return at one time (max 100)
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - schema:
+            type: string
+          in: query
+          name: offset
+      responses:
+        '200':
+          description: A paged array of medical tests
+          headers:
+            x-next:
+              description: A link to the next page of responses
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MedicalTests'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: ../common/models/error.v1.yaml
+    post:
+      summary: Prescribe a medical tests
+      operationId: prescribeMedicalTests
+      tags:
+        - networkFundamentals
+      responses:
+        '201':
+          description: Null response
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: ../common/models/error.v1.yaml
+  /drugDosage:
+    get:
+      summary: Get all drug dosages
+      description: Get all  drug dosages
+      operationId: listDrugDosages
+      tags:
+        - networkFundamentals
+      parameters:
+        - name: limit
+          in: query
+          description: How many items to return at one time (max 100)
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - schema:
+            type: string
+          in: query
+          name: offset
+      responses:
+        '200':
+          description: A paged array of drug dosages
+          headers:
+            x-next:
+              description: A link to the next page of responses
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DrugDosages'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: ../common/models/error.v1.yaml
+    post:
+      summary: Register a new drug dosages
+      operationId: createDrugDosage
+      tags:
+        - networkFundamentals
+      responses:
+        '201':
+          description: Null response
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: ../common/models/error.v1.yaml
+  /drugDosage/{drugId}:
+    get:
+      summary: Update drug dosage for a specific drug
+      operationId: updateDrugDosageById
+      tags:
+        - networkFundamentals
+      parameters:
+        - name: drugId
+          in: path
+          required: true
+          description: The id of the drug to update
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DrugDosage"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
 
 components:
   schemas:
@@ -131,17 +335,6 @@ components:
       type: array
       items:
         $ref: "#/components/schemas/People"
-    Error:
-      type: object
-      required:
-        - code
-        - message
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
     Disease:
       type: object
       required:
@@ -156,3 +349,79 @@ components:
       type: array
       items:
         $ref: "#/components/schemas/Diseases"
+    Treatment:
+      type: object
+      required:
+        - id
+        - startDate
+        - endDate
+      properties:
+        id:
+          type: integer
+          format: int64
+        endDate:
+          type: string
+          format: date
+        startDate:
+          type: string
+          format: date
+        tag:
+          type: string
+    Treatments:
+      type: array
+      items:
+        $ref: "#/components/schemas/Treatments"
+    MedicalTest:
+      type: object
+      required:
+        - id
+        - date
+        - name
+      properties:
+        id:
+          type: integer
+          format: int64
+        date:
+          type: string
+          example: '2020-01-01'
+          format: date
+          default: '2020-01-01'
+        description:
+          type: string
+          example: description
+        name:
+          type: string
+          example: name
+        tag:
+          type: string
+    MedicalTests:
+      type: array
+      items:
+        $ref: "#/components/schemas/MedicalTests"
+    DrugDosage:
+      type: object
+      required:
+        - id
+        - quantity
+      properties:
+        id:
+          type: integer
+        quantity:
+          type: number
+        tag:
+          type: string
+    DrugDosages:
+      type: array
+      items:
+        $ref: "#/components/schemas/DrugDosages"
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
