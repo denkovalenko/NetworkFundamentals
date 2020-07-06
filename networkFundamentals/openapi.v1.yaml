@@ -1,5 +1,7 @@
 openapi: 3.0.0
 info:
+  contact:
+    name: Denys Kovalenko
   description: Network Fundamentals - Task 2. Denys Kovalenko
   version: 1.0.0
   title: Network Fundamentals
