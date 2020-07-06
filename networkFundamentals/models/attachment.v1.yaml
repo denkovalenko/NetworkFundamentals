@@ -2,19 +2,19 @@ title: Attachment
 description: An attachment.
 type: object
 x-tags:
-  - attachment
+  - networkFundamentals
 xml:
   name: Attachment
 properties:
   name:
     type: string
-    example: doggie
+    example: paper
   content:
     type: string
-    example: doggie
+    example: content
   description:
     type: string
-    example: doggie
+    example: description
   filePath:
     type: array
     xml:
@@ -22,7 +22,7 @@ properties:
       wrapped: true
     items:
       type: string
-  attachmentType:
+  type:
     $ref: ./attachmentType.v1.yaml
 required:
   - name

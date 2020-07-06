@@ -1,4 +1,4 @@
-title: AttachmentType
+title: medicalTestType
 type: object
 description: ''
 x-tags:
@@ -9,3 +9,4 @@ properties:
     example: type
 required:
   - type
+

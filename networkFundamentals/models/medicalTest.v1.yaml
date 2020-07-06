@@ -1,0 +1,21 @@
+type: object
+title: Medical Test
+description: A medical test.
+x-tags:
+  - networkFundamentals
+properties:
+  date:
+    type: string
+    example: '2020-01-01'
+    format: date
+    default: '2020-01-01'
+  description:
+    type: string
+    example: description
+  name:
+    type: string
+    example: name
+  type:
+    $ref: ./medicalTestType.v1.yaml
+  attachments:
+    $ref: ./attachment.v1.yaml
