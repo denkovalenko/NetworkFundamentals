@@ -1,11 +1,16 @@
 openapi: 3.0.0
 info:
+  description: Network Fundamentals - Task 2. Denys Kovalenko
   version: 1.0.0
   title: Network Fundamentals
   license:
     name: MIT
 servers:
   - url: 'https://sigmasoftware.stoplight.io/v1'
+
+tags:
+  - name: networkFundamentals
+
 paths:
   /people:
     get:
@@ -45,6 +50,7 @@ paths:
               schema:
                 $ref: ../common/models/error.v1.yaml
     post:
+      description: Network Fundamentals - Task 2. Denys Kovalenko
       summary: Register new person
       operationId: createPerson
       tags:
@@ -60,6 +66,7 @@ paths:
                 $ref: ../common/models/error.v1.yaml
   /people/{personId}:
     get:
+      description: Network Fundamentals - Task 2. Denys Kovalenko
       summary: Info for a specific person
       operationId: showPersonById
       tags:
@@ -122,6 +129,7 @@ paths:
               schema:
                 $ref: ../common/models/error.v1.yaml
     post:
+      description: Network Fundamentals - Task 2. Denys Kovalenko
       summary: Register disease
       operationId: createDisease
       tags:
@@ -173,6 +181,7 @@ paths:
               schema:
                 $ref: ../common/models/error.v1.yaml
     post:
+      description: Network Fundamentals - Task 2. Denys Kovalenko
       summary: Prescribe a treatment
       operationId: prescribeTreatment
       tags:
@@ -224,6 +233,7 @@ paths:
               schema:
                 $ref: ../common/models/error.v1.yaml
     post:
+      description: Network Fundamentals - Task 2. Denys Kovalenko
       summary: Prescribe a medical test
       operationId: prescribeMedicalTests
       tags:
@@ -239,6 +249,7 @@ paths:
                 $ref: ../common/models/error.v1.yaml
   /medicalTest/{medicalTestId}/{attachment}:
     post:
+      description: Network Fundamentals - Task 2. Denys Kovalenko
       summary: Add attachment to the medical test
       operationId: addAttachmentToMedicalTest
       tags:
@@ -267,6 +278,7 @@ paths:
                 $ref: ../common/models/error.v1.yaml
   /medicalTest/{previousYear}:
     post:
+      description: Network Fundamentals - Task 2. Denys Kovalenko
       summary: Get all medical tests for the previous year
       operationId: getAllMedicalTestsForThePreviousYear
       tags:
@@ -326,6 +338,7 @@ paths:
               schema:
                 $ref: ../common/models/error.v1.yaml
     post:
+      description: Network Fundamentals - Task 2. Denys Kovalenko
       summary: Prescribe a medications
       operationId: prescribeMedications
       tags:
@@ -341,6 +354,7 @@ paths:
                 $ref: ../common/models/error.v1.yaml          
   /medications/{currentDate}:
     post:
+      description: Network Fundamentals - Task 2. Denys Kovalenko
       summary: Get all ongoing medications
       operationId: getAllOngoingMedications
       tags:
@@ -400,6 +414,7 @@ paths:
               schema:
                 $ref: ../common/models/error.v1.yaml
     post:
+      description: Network Fundamentals - Task 2. Denys Kovalenko
       summary: Register a new drug dosages
       operationId: createDrugDosage
       tags:
@@ -415,6 +430,7 @@ paths:
                 $ref: ../common/models/error.v1.yaml
   /drugDosage/{drugId}/{quantity}:
     post:
+      description: Network Fundamentals - Task 2. Denys Kovalenko
       summary: Change drug dosage
       operationId: updateDrugDosageById
       tags:
