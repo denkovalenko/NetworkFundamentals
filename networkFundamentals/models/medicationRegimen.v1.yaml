@@ -1,6 +1,6 @@
-title: attachmentType
+title: medicationRegimen
 type: object
-description: An attachment type.
+description: A medication regimen.
 x-tags:
   - networkFundamentals
 properties:

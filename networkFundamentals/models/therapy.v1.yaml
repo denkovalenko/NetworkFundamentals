@@ -20,6 +20,8 @@ properties:
     $ref: ./diagnosis.v1.yaml
   doctor:
     $ref: ./person.v1.yaml
+  prescription:
+    $ref: ./prescription.v1.yaml
   id:
     type: integer
 required:

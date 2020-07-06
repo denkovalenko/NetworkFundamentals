@@ -1,0 +1,23 @@
+title: prescription
+type: object
+description: A prescription.
+x-tags:
+  - networkFundamentals
+properties:
+  id:
+    type: integer
+  name:
+    type: string
+    example: name
+  description:
+    type: string
+    example: description
+  drug:
+    $ref: ./drug.v1.yaml
+  medication:
+    $ref: ./medication.v1.yaml
+  dosage:
+    $ref: ./drugDosage.v1.yaml
+required:
+  - id
+  - name

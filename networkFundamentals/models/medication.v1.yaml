@@ -1,0 +1,21 @@
+title: medication
+type: object
+description: A medication.
+properties:
+  id:
+    type: integer
+  notes:
+    type: string
+  isDone:
+    type: boolean
+  date:
+    type: string
+    format: date
+    default: '2020-01-01'
+    example: '2020-01-01'
+  regimen:
+    $ref: ./medicationRegimen.v1.yaml
+required:
+  - id
+  - isDone
+  - date

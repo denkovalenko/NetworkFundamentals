@@ -1,6 +1,6 @@
-title: attachmentType
+title: drugUnit
 type: object
-description: An attachment type.
+description: A drug unit.
 x-tags:
   - networkFundamentals
 properties:

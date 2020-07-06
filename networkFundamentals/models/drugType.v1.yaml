@@ -1,6 +1,6 @@
-title: attachmentType
+title: drugType
 type: object
-description: An attachment type.
+description: A drug type.
 x-tags:
   - networkFundamentals
 properties:

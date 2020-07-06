@@ -1,0 +1,19 @@
+title: drug
+type: object
+description: A drug.
+x-tags:
+  - networkFundamentals
+properties:
+  id:
+    type: integer
+  name:
+    type: string
+    example: name
+  description:
+    type: string
+    example: description
+  type:
+    $ref: ./drugType.v1.yaml
+required:
+  - id
+  - name

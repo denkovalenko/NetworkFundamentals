@@ -1,0 +1,15 @@
+title: drugDosage
+type: object
+description: A drug dosage.
+x-tags:
+  - networkFundamentals
+properties:
+  id:
+    type: integer
+  quantity:
+    type: number
+  unit:
+    $ref: ./drugUnit.v1.yaml
+required:
+  - id
+  - quantity
