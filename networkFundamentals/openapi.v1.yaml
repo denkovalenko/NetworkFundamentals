@@ -338,9 +338,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ../common/models/error.v1.yaml
-
-   /medications/{currentDate}:
+                $ref: ../common/models/error.v1.yaml          
+  /medications/{currentDate}:
     post:
       summary: Get all ongoing medications
       operationId: getAllOngoingMedications
@@ -362,7 +361,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ../common/models/error.v1.yaml             
+                $ref: ../common/models/error.v1.yaml
   /drugDosage:
     get:
       summary: Get all drug dosages
