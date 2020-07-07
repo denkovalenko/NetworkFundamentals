@@ -66,33 +66,29 @@ paths:
             application/json:
               schema:
                 $ref: ../common/models/error.v1.yaml
-  /people/{personId}:
-    get:
+  /people/diagnosis/{name}:
+    post:
       description: Network Fundamentals - Task 2. Denys Kovalenko
-      summary: Info for a specific person
-      operationId: showPersonById
+      summary: Search for users whom diagnosis starts with <string>
+      operationId: searchUsersByDiagnosis
       tags:
         - networkFundamentals
       parameters:
-        - name: personId
+        - name: name
           in: path
           required: true
-          description: The id of the person to retrieve
+          description: The name of the diagnosis
           schema:
-            type: string
+            type: string        
       responses:
-        '200':
-          description: Expected response to a valid request
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Person"
+        '201':
+          description: Null response
         default:
           description: unexpected error
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Error"
+                $ref: ../common/models/error.v1.yaml 
   /disease:
     get:
       summary: Get all disease
@@ -424,58 +420,6 @@ paths:
             application/json:
               schema:
                 $ref: ../common/models/error.v1.yaml
-  /drugDosage:
-    get:
-      summary: Get all drug dosages
-      description: Get all  drug dosages
-      operationId: listDrugDosages
-      tags:
-        - networkFundamentals
-      parameters:
-        - name: limit
-          in: query
-          description: How many items to return at one time (max 100)
-          required: false
-          schema:
-            type: integer
-            format: int32
-        - schema:
-            type: string
-          in: query
-          name: offset
-      responses:
-        '200':
-          description: A paged array of drug dosages
-          headers:
-            x-next:
-              description: A link to the next page of responses
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DrugDosages'
-        default:
-          description: unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: ../common/models/error.v1.yaml
-    post:
-      description: Network Fundamentals - Task 2. Denys Kovalenko
-      summary: Register a new drug dosages
-      operationId: createDrugDosage
-      tags:
-        - networkFundamentals
-      responses:
-        '201':
-          description: Null response
-        default:
-          description: unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: ../common/models/error.v1.yaml
   /drugDosage/{drugId}/{quantity}:
     post:
       description: Network Fundamentals - Task 2. Denys Kovalenko
@@ -508,20 +452,6 @@ paths:
 
 components:
   schemas:
-    Person:
-      type: object
-      required:
-        - id
-        - dateOfBirthday
-      properties:
-        id:
-          type: integer
-          format: int64
-        dateOfBirthday:
-          type: string
-          format: date
-        tag:
-          type: string
     People:
       type: array
       items:
@@ -542,18 +472,3 @@ components:
       type: array
       items:
         $ref: "#/components/schemas/Medications"
-    DrugDosages:
-      type: array
-      items:
-        $ref: "#/components/schemas/DrugDosages"
-    Error:
-      type: object
-      required:
-        - code
-        - message
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
